@@ -1,0 +1,9 @@
+# Workspace OS/editor clutter
+.DS_Store
+.vscode/
+
+# Keep project-level dependency/build ignores managed in each folder
+backend/target/
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/

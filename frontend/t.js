@@ -1,0 +1,1 @@
+const fs = require('fs'); const file = '/Users/dhruv/Desktop/innovative_assignment/frontend/src/app/pages/Login.tsx'; let code = fs.readFileSync(file, 'utf-8'); code = code.replace(/Sign In\s\*<\/button>/g, '{loading ? \'Processing...\' : (isLogin ? \'Sign In\' : \'Create Account\')}</button>'); fs.writeFileSync(file, code);
