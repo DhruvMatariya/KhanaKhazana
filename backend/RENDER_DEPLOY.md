@@ -1,41 +1,39 @@
-# Deploy Backend on Render
+# Deploy Backend on Railway
 
-This backend is now configured for Render with environment-based configuration and dynamic port binding.
+This backend is configured for Railway with environment-based configuration and dynamic port binding.
 
-## What was added for Render
+## Railway-ready config already in project
 
-- `server.port=${PORT:8080}` so Render can bind your service port.
-- `spring.data.mongodb.uri=${MONGODB_URI:}` so database URL is supplied from Render environment variables.
-- `cors.allowed-origins=${CORS_ALLOWED_ORIGINS:...}` and security wiring for production frontend domains.
+- `server.port=${PORT:8080}` so Railway can bind your service port.
+- `spring.data.mongodb.uri=${MONGODB_URI:}` so DB URL comes from environment variables.
+- `cors.allowed-origins=${CORS_ALLOWED_ORIGINS:...}` for frontend domain allowlist.
 - Public health endpoint: `GET /api/health`.
 
-## Render Setup (Dashboard)
+## Railway Setup (Dashboard)
 
-1. Push your latest code to GitHub.
-2. In Render, click **New +** -> **Web Service**.
-3. Connect your repository.
-4. Set these options:
+1. Push latest code to GitHub.
+2. In Railway, click **New Project**.
+3. Choose **Deploy from GitHub repo**.
+4. Select your repository.
+5. Open service settings and set:
    - **Root Directory**: `backend`
-   - **Environment**: `Java`
-   - **Region**: choose closest to your users
-   - **Branch**: your deploy branch (for example `main`)
+   - **Builder**: Nixpacks (default)
    - **Build Command**: `./mvnw clean package -DskipTests`
    - **Start Command**: `java -jar target/backend-0.0.1-SNAPSHOT.jar`
-   - **Plan**: Free (or paid for better uptime)
-5. Add Environment Variables in Render:
+6. Add Environment Variables in Railway:
    - `MONGODB_URI` = your MongoDB Atlas connection string
    - `GROQ_API_KEY` = your Groq API key
    - `GROQ_API_MODEL` = `llama-3.3-70b-versatile` (or your preferred model)
    - `CORS_ALLOWED_ORIGINS` = comma-separated frontend URLs, for example:
-     - `https://your-frontend.onrender.com`
+     - `https://your-frontend.up.railway.app`
      - `https://your-custom-domain.com`
 
 ## Health Check
 
-- In Render advanced settings, set Health Check Path to: `/api/health`
+- In Railway service settings, set health check path to: `/api/health`.
 
 ## Important Notes
 
 - Do not keep secrets in `application.properties`.
-- Keep `MONGODB_URI` and `GROQ_API_KEY` only in Render environment variables.
-- If your frontend is deployed later and URL changes, update `CORS_ALLOWED_ORIGINS`.
+- Keep `MONGODB_URI` and `GROQ_API_KEY` only in Railway environment variables.
+- If frontend URL changes, update `CORS_ALLOWED_ORIGINS` and redeploy.
