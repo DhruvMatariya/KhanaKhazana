@@ -262,6 +262,10 @@ public class AssistantChatService {
     }
 
     private String tryDirectOrderLookupReply(String message, List<Order> customerOrders) {
+        if (isRecentOrdersIntent(message)) {
+            return buildRecentOrdersReply(customerOrders);
+        }
+
         String reference = extractOrderReference(message);
         if (reference == null) {
             return null;
@@ -294,6 +298,46 @@ public class AssistantChatService {
 
         return "I could not find order #" + reference +
                 " under your account. Your recent order IDs are: " + recentIds + ".";
+    }
+
+    private boolean isRecentOrdersIntent(String message) {
+        if (message == null || message.isBlank()) {
+            return false;
+        }
+
+        String lower = message.toLowerCase(Locale.ROOT);
+        return lower.contains("recent order")
+                || lower.contains("my orders")
+                || lower.contains("order history")
+                || lower.contains("latest order")
+                || lower.contains("last order")
+                || lower.contains("recent purchases");
+    }
+
+    private String buildRecentOrdersReply(List<Order> customerOrders) {
+        if (customerOrders == null || customerOrders.isEmpty()) {
+            return "I do not see any orders for your account yet.";
+        }
+
+        List<Order> recentOrders = customerOrders.stream()
+                .sorted(Comparator.comparing(Order::getCreatedAt, Comparator.nullsLast(Comparator.reverseOrder())))
+                .limit(5)
+                .toList();
+
+        StringBuilder sb = new StringBuilder("Here are your recent orders:\n");
+        for (Order order : recentOrders) {
+            sb.append("- #")
+                    .append(shortId(order.getId()))
+                    .append(" | status: ")
+                    .append(normalize(order.getDeliveryStatus(), order.getStatus()))
+                    .append(" | total: INR ")
+                    .append(String.format(Locale.ROOT, "%.2f", order.getTotalAmount()))
+                    .append(" | placed: ")
+                    .append(formatDate(order.getCreatedAt()))
+                    .append("\n");
+        }
+
+        return sb.toString().trim();
     }
 
     private String tryCreateCustomerNeedTicket(User user, String message, List<Order> customerOrders) {

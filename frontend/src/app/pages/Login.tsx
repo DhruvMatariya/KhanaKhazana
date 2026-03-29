@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ChefHat, Store, UserRound } from "lucide-react";
+import { ArrowLeft, ChefHat, Store, UserRound } from "lucide-react";
 import { api, getApiErrorMessage, type AuthUser } from "../lib/api";
 import { setStoredUser } from "../lib/session";
 
@@ -86,6 +86,15 @@ export default function Login() {
         />
       </div>
 
+      <button
+        type="button"
+        onClick={() => navigate("/")}
+        className="absolute top-6 left-6 flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:bg-white/10 hover:text-white transition-all"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to Home
+      </button>
+
       <div
         className="relative w-full max-w-2xl p-10 rounded-[32px] border border-white/10"
         style={{
@@ -106,7 +115,7 @@ export default function Login() {
           </div>
         </div>
 
-        <h1 className="text-3xl font-semibold text-white text-center mb-2">BiteHub Marketplace</h1>
+        <h1 className="text-3xl font-semibold text-white text-center mb-2">KhanaKhazana</h1>
         <p className="text-zinc-400 text-center mb-8">Multi-restaurant ordering and operations platform</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">

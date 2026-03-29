@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Navigate } from "react-router";
+import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import DineInManagement from "./pages/DineInManagement";
@@ -10,7 +11,7 @@ import { getStoredUser } from "./lib/session";
 function RequireAuth({ children }: { children: JSX.Element }) {
   const user = getStoredUser();
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
   return children;
 }
@@ -18,6 +19,10 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 export const router = createBrowserRouter([
   {
     path: "/",
+    Component: Landing,
+  },
+  {
+    path: "/login",
     Component: Login,
   },
   {

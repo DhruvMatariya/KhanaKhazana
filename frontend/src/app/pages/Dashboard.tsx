@@ -71,7 +71,7 @@ export default function Dashboard() {
               <UtensilsCrossed className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">RestaurantOS</h2>
+              <h2 className="text-lg font-semibold text-white">KhanaKhazana</h2>
               <p className="text-xs text-zinc-400">
                 {user
                   ? `${user.username} • ${user.role}${user.restaurantId ? " • Restaurant Admin" : ""}`
