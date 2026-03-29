@@ -1,7 +1,10 @@
 import axios from "axios";
 import { clearStoredUser, getStoredUser } from "./session";
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || "http://localhost:8080";
+const configuredApiBaseUrl = ((import.meta as any).env?.VITE_API_BASE_URL as string | undefined)?.trim();
+const isLocalBrowser =
+  typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const API_BASE_URL = configuredApiBaseUrl || (isLocalBrowser ? "http://localhost:8080" : "");
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -37,6 +40,10 @@ api.interceptors.response.use(
 );
 
 export function getApiErrorMessage(error: any, fallback = "Something went wrong."): string {
+  if (!error?.response) {
+    return "Cannot reach backend service. Check VITE_API_BASE_URL and backend CORS settings.";
+  }
+
   const data = error?.response?.data;
 
   if (typeof data === "string" && data.trim().length > 0) {
