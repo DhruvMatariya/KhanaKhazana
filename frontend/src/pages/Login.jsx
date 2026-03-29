@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
@@ -16,11 +18,11 @@ const Login = () => {
 
     try {
       if (isLogin) {
-        const res = await axios.post('http://localhost:8080/api/auth/login', { username, password });
+        const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { username, password });
         localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/dashboard');
       } else {
-        await axios.post('http://localhost:8080/api/auth/register', { username, password, email });
+        await axios.post(`${API_BASE_URL}/api/auth/register`, { username, password, email });
         setIsLogin(true);
         setError('Registration successful! Please login.');
       }

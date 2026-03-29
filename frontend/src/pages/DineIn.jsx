@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 const DineIn = () => {
   const [guests, setGuests] = useState(1);
   const [message, setMessage] = useState('');
@@ -9,7 +11,7 @@ const DineIn = () => {
 
   const handleAllocate = async () => {
     try {
-      const res = await axios.post(`http://localhost:8080/api/tables/allocate?guests=${guests}`);
+      const res = await axios.post(`${API_BASE_URL}/api/tables/allocate?guests=${guests}`);
       setMessage(`Table ${res.data.tableNumber} allocated successfully!`);
       setTimeout(() => navigate('/table-map'), 2000);
     } catch (err) {
@@ -24,7 +26,7 @@ const DineIn = () => {
   const joinWaitlist = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     try {
-      const res = await axios.post(`http://localhost:8080/api/waitlist/join?name=${user.username}&guests=${guests}`);
+      const res = await axios.post(`${API_BASE_URL}/api/waitlist/join?name=${user.username}&guests=${guests}`);
       setMessage(`Added to waitlist! Estimated wait: ${res.data.estimatedWaitTimeMinutes} mins`);
     } catch (err) {
       setMessage('Failed to join waitlist.');

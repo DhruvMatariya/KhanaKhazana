@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 const TableMap = () => {
   const [tables, setTables] = useState([]);
   const navigate = useNavigate();
 
   const fetchTables = async () => {
-    const res = await axios.get('http://localhost:8080/api/tables');
+    const res = await axios.get(`${API_BASE_URL}/api/tables`);
     setTables(res.data);
   };
 
@@ -20,7 +22,7 @@ const TableMap = () => {
   const freeTable = async (id, e) => {
     e.stopPropagation();
     if(window.confirm("Are you sure you want to mark this table as FREE (simulate guests leaving)?")) {
-      await axios.post(`http://localhost:8080/api/tables/free/${id}`);
+      await axios.post(`${API_BASE_URL}/api/tables/free/${id}`);
       fetchTables();
     }
   };

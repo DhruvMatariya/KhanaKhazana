@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
 const MENU_ITEMS = [
   { id: 1, name: 'Margherita Pizza', category: 'Pizza', price: 12.99 },
   { id: 2, name: 'Pepperoni Pizza', category: 'Pizza', price: 14.99 },
@@ -79,7 +81,7 @@ const OnlineOrder = () => {
         status: 'PENDING'
       };
 
-      await axios.post('http://localhost:8080/api/orders', orderData);
+      await axios.post(`${API_BASE_URL}/api/orders`, orderData);
       
       // Success handling
       setShowPayment(false);
