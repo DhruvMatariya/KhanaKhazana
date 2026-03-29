@@ -10,4 +10,4 @@ RUN npm run build
 
 ENV NODE_ENV=production
 
-CMD ["sh", "-c", "npm run preview -- --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["sh", "-c", "printf 'window.__RUNTIME_CONFIG__={VITE_API_BASE_URL:\"%s\"};\\n' \"${VITE_API_BASE_URL}\" > dist/runtime-config.js && npm run preview -- --host 0.0.0.0 --port ${PORT:-8080}"]

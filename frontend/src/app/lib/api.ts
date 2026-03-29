@@ -1,7 +1,14 @@
 import axios from "axios";
 import { clearStoredUser, getStoredUser } from "./session";
 
-const configuredApiBaseUrl = ((import.meta as any).env?.VITE_API_BASE_URL as string | undefined)?.trim();
+const runtimeApiBaseUrl =
+  typeof window !== "undefined"
+    ? ((window as any).__RUNTIME_CONFIG__?.VITE_API_BASE_URL as string | undefined)
+    : undefined;
+
+const configuredApiBaseUrl = (runtimeApiBaseUrl || ((import.meta as any).env?.VITE_API_BASE_URL as string | undefined))
+  ?.trim()
+  .replace(/\/+$/, "");
 const isLocalBrowser =
   typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname);
 const API_BASE_URL = configuredApiBaseUrl || (isLocalBrowser ? "http://localhost:8080" : "");
@@ -40,8 +47,16 @@ api.interceptors.response.use(
 );
 
 export function getApiErrorMessage(error: any, fallback = "Something went wrong."): string {
+  if (!configuredApiBaseUrl && !isLocalBrowser) {
+    return "VITE_API_BASE_URL is missing. Set it to your backend service URL.";
+  }
+
   if (!error?.response) {
     return "Cannot reach backend service. Check VITE_API_BASE_URL and backend CORS settings.";
+  }
+
+  if (error?.response?.status === 404) {
+    return "API endpoint not found (404). Verify VITE_API_BASE_URL points to backend (not frontend) and includes https://.";
   }
 
   const data = error?.response?.data;
