@@ -32,13 +32,18 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error?.response?.status;
-    if (status === 401 || status === 403) {
+    const requestUrl = String(error?.config?.url || "");
+    const isAuthEndpoint = requestUrl.includes("/api/auth/");
+
+    if ((status === 401 || status === 403) && !isAuthEndpoint) {
       const user = getStoredUser();
       const hasToken = Boolean(user?.token);
-      if (status === 401 || !hasToken) {
+
+      // Only force logout navigation when an existing authenticated session expires.
+      if (hasToken) {
         clearStoredUser();
-        if (typeof window !== "undefined" && window.location.pathname !== "/") {
-          window.location.href = "/";
+        if (typeof window !== "undefined" && window.location.pathname !== "/login") {
+          window.location.href = "/login";
         }
       }
     }
