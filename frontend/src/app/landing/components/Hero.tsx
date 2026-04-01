@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, TrendingUp, Users, ShoppingBag, BarChart2 } from 'lucide-react';
 import { C, gradients, glass } from './tokens';
+import CircularGallery from '../../components/CircularGallery';
 
 // ── Tiny bar chart ──────────────────────────────────────
 const weekBars = [42, 58, 38, 67, 72, 88, 94];
@@ -42,16 +43,16 @@ const tableStatuses = [
 ];
 
 const statusColor: Record<string, string> = {
-  occupied: '#FB7185',
+  occupied: '#FF8C42',
   available: '#10B981',
   reserved: '#6366F1',
 };
 
 // ── Order queue data ─────────────────────────────────────
 const orders = [
-  { id: '#1847', item: 'Biryani', status: 'Preparing', color: '#FB923C' },
-  { id: '#1848', item: 'Beef Burger', status: 'Ready', color: '#10B981' },
-  { id: '#1849', item: 'Pasta', status: 'New', color: '#A1A1AA' },
+  { id: '#1847', item: 'Biryani', status: 'Preparing', color: '#FF8C42' },
+  { id: '#1848', item: 'Veggie Burger', status: 'Ready', color: '#10B981' },
+  { id: '#1849', item: 'Pasta Primavera', status: 'New', color: '#A1A1AA' },
 ];
 
 function goToLogin() {
@@ -78,8 +79,8 @@ function DashboardMockup() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ display: 'flex', gap: '5px' }}>
-              <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#F43F5E', opacity: 0.8 }} />
-              <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FB923C', opacity: 0.8 }} />
+              <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#FF8C42', opacity: 0.8 }} />
+              <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#6B5BA0', opacity: 0.8 }} />
               <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#10B981', opacity: 0.8 }} />
             </div>
             <span style={{ fontSize: '12px', color: C.muted, marginLeft: '6px', fontWeight: 500 }}>Today's Overview</span>
@@ -90,7 +91,7 @@ function DashboardMockup() {
         {/* Stats row */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '20px' }}>
           {[
-            { label: 'Revenue', value: '$14,820', change: '+12.4%', color: C.rose },
+            { label: 'Revenue', value: '₹14,820', change: '+12.4%', color: C.rose },
             { label: 'Orders', value: '183', change: '+8.2%', color: C.emerald },
             { label: 'Tables', value: '16/20', change: 'Active', color: C.indigo },
           ].map((stat) => (
@@ -457,7 +458,16 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.4, ease: 'easeOut' }}
             style={{ flex: '1 1 0', justifyContent: 'center', paddingRight: '48px', paddingBottom: '40px', paddingTop: '28px' }}
           >
-            <DashboardMockup />
+            <div style={{ width: '100%', height: '500px' }}>
+              <CircularGallery
+                bend={3}
+                textColor='#FF8C42'
+                borderRadius={0.05}
+                font='bold 24px Figtree'
+                scrollSpeed={2}
+                scrollEase={0.05}
+              />
+            </div>
           </motion.div>
         </div>
       </div>

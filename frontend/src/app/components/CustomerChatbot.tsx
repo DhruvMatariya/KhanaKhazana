@@ -94,7 +94,7 @@ export default function CustomerChatbot({ restaurantId }: CustomerChatbotProps) 
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="h-14 w-14 rounded-full border border-cyan-400/50 bg-cyan-500/20 text-cyan-100 shadow-lg backdrop-blur hover:bg-cyan-500/30"
+          className="h-14 w-14 rounded-full border border-orange-400/50 bg-orange-500/20 text-orange-100 shadow-lg backdrop-blur hover:bg-orange-500/30"
           aria-label="Open assistant"
         >
           <MessageCircle className="mx-auto h-6 w-6" />
@@ -102,8 +102,8 @@ export default function CustomerChatbot({ restaurantId }: CustomerChatbotProps) 
       )}
 
       {open && (
-        <div className="w-[92vw] max-w-sm rounded-2xl border border-white/10 bg-[#111111]/95 shadow-2xl backdrop-blur">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+        <div className="w-[92vw] max-w-sm rounded-2xl border border-white/10 bg-[#111111]/95 shadow-2xl backdrop-blur flex flex-col max-h-[90vh]">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3 flex-shrink-0">
             <div>
               <p className="text-sm font-semibold text-white">Order Assistant</p>
               <p className="text-xs text-zinc-400">Powered by your order data</p>
@@ -113,11 +113,11 @@ export default function CustomerChatbot({ restaurantId }: CustomerChatbotProps) 
             </button>
           </div>
 
-          <div className="max-h-[40rem] min-h-[22rem] space-y-2 overflow-y-auto px-3 py-3">
+          <div className="flex-1 min-h-[200px] max-h-[400px] space-y-2 overflow-y-auto px-3 py-3">
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`rounded-xl px-3 py-2 text-sm ${msg.role === "user" ? "ml-8 bg-cyan-500/20 text-cyan-100" : "mr-8 bg-white/10 text-zinc-100"}`}
+                className={`rounded-xl px-3 py-2 text-sm ${msg.role === "user" ? "ml-8 bg-orange-500/20 text-orange-100" : "mr-8 bg-white/10 text-zinc-100"}`}
               >
                 {msg.text}
               </div>
@@ -125,7 +125,7 @@ export default function CustomerChatbot({ restaurantId }: CustomerChatbotProps) 
             {loading && <div className="mr-8 rounded-xl bg-white/10 px-3 py-2 text-sm text-zinc-300">Thinking...</div>}
           </div>
 
-          <div className="border-t border-white/10 px-3 py-2">
+          <div className="border-t border-white/10 px-3 py-2 flex-shrink-0">
             <div className="mb-2 flex flex-wrap gap-2">
               {quickQuestions.map((q) => (
                 <button
@@ -154,7 +154,7 @@ export default function CustomerChatbot({ restaurantId }: CustomerChatbotProps) 
               <button
                 onClick={() => sendMessage()}
                 disabled={loading || !input.trim()}
-                className="rounded-xl border border-cyan-400/40 bg-cyan-500/20 px-3 text-cyan-100 disabled:opacity-50"
+                className="rounded-xl border border-orange-400/40 bg-orange-500/20 px-3 text-orange-100 disabled:opacity-50"
                 aria-label="Send message"
               >
                 <Send className="h-4 w-4" />

@@ -343,8 +343,17 @@ public class AssistantChatService {
     private String tryCreateCustomerNeedTicket(User user, String message, List<Order> customerOrders) {
         String lower = message.toLowerCase(Locale.ROOT);
         boolean complaintIntent = lower.contains("complain") || lower.contains("complaint") || lower.contains("issue") || lower.contains("soggy") || lower.contains("file complaint") || lower.contains("bad");
+        
+        // Only treat "suggest" as feedback if it's about ordering/service, not food recommendations
+        boolean isFoodSuggestion = lower.contains("suggest") && (lower.contains("food") || lower.contains("dish") || lower.contains("item") || lower.contains("rated"));
         boolean suggestionIntent = lower.contains("suggest") || lower.contains("suggestion") || lower.contains("improve");
+        
         if (!complaintIntent && !suggestionIntent) {
+            return null;
+        }
+        
+        // Don't intercept food/rating suggestions - let them go to LLM
+        if (isFoodSuggestion) {
             return null;
         }
 

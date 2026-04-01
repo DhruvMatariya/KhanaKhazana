@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import { C, gradients } from './tokens';
 
 const navLinks = [
@@ -20,6 +21,7 @@ function goToLogin() {
 }
 
 export default function Nav() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -28,6 +30,16 @@ export default function Nav() {
     window.addEventListener('scroll', handler);
     return () => window.removeEventListener('scroll', handler);
   }, []);
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // If on landing page, scroll to top. Otherwise, navigate to landing page
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <>
@@ -63,7 +75,7 @@ export default function Nav() {
           <a
             href="#"
             style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            onClick={handleLogoClick}
           >
             <div
               style={{

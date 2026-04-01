@@ -7,20 +7,20 @@ export const C = {
   text: '#FFFFFF',
   muted: '#A1A1AA',
   subtle: '#52525B',
-  rose: '#FB7185',
-  orange: '#FB923C',
+  rose: '#FF8C42',
+  orange: '#FF8C42',
   emerald: '#10B981',
   emeraldLight: '#34D399',
-  indigo: '#6366F1',
-  indigoLight: '#818CF8',
-  red: '#F43F5E',
+  indigo: '#FF8C42',
+  indigoLight: '#FFB366',
+  red: '#FF8C42',
 };
 
 export const gradients = {
-  roseOrange: 'linear-gradient(135deg, #FB7185 0%, #FB923C 100%)',
+  roseOrange: 'linear-gradient(135deg, #FF8C42 0%, #D45D2B 100%)',
   emerald: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)',
-  indigo: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)',
-  roseText: 'linear-gradient(135deg, #FB7185 0%, #FB923C 100%)',
+  indigo: 'linear-gradient(135deg, #FF8C42 0%, #FFB366 100%)',
+  roseText: 'linear-gradient(135deg, #FF8C42 0%, #D45D2B 100%)',
 };
 
 export const glass = {

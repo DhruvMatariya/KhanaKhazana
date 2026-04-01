@@ -14,10 +14,10 @@ function DashboardVisual() {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '20px' }}>
         {[
-          { label: 'Today', value: '$14,820', up: true },
-          { label: 'Yesterday', value: '$13,200', up: false },
-          { label: 'This Week', value: '$82,440', up: true },
-          { label: 'Avg Order', value: '$38.50', up: true },
+          { label: 'Today', value: '₹14,820', up: true },
+          { label: 'Yesterday', value: '₹13,200', up: false },
+          { label: 'This Week', value: '₹82,440', up: true },
+          { label: 'Avg Order', value: '₹38.50', up: true },
         ].map((s) => (
           <div key={s.label} style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '10px 12px', border: `1px solid ${C.border}` }}>
             <div style={{ fontSize: '10px', color: C.subtle, marginBottom: '4px', fontWeight: 500 }}>{s.label}</div>
@@ -130,9 +130,9 @@ function OrdersVisual() {
     { label: 'Ready', count: 3, color: C.emerald },
   ];
   const recentOrders = [
-    { id: '#2041', customer: 'Riya S.', item: 'Truffle Pasta', status: 'Preparing', statusColor: C.orange, total: '$22.00' },
-    { id: '#2042', customer: 'Dan K.', item: 'Grilled Salmon', status: 'Ready', statusColor: C.emerald, total: '$34.00' },
-    { id: '#2043', customer: 'Sarah M.', item: 'Caesar Salad', status: 'Confirmed', statusColor: C.indigo, total: '$18.00' },
+    { id: '#2041', customer: 'Riya S.', item: 'Truffle Pasta', status: 'Preparing', statusColor: C.orange, total: '₹22.00' },
+    { id: '#2042', customer: 'Dan K.', item: 'Grilled Salmon', status: 'Ready', statusColor: C.emerald, total: '₹34.00' },
+    { id: '#2043', customer: 'Sarah M.', item: 'Caesar Salad', status: 'Confirmed', statusColor: C.indigo, total: '₹18.00' },
   ];
   return (
     <div style={{ ...glass, padding: '24px', border: `1px solid ${C.border}`, height: '100%' }}>

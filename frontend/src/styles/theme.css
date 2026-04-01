@@ -27,16 +27,16 @@
   --ring: rgba(255, 255, 255, 0.3);
   
   /* Premium gradients */
-  --gradient-rose-orange: linear-gradient(135deg, #FB7185 0%, #FB923C 100%);
+  --gradient-rose-orange: linear-gradient(135deg, #9382E0 0%, #6B5BA0 100%);
   --gradient-emerald: linear-gradient(135deg, #10B981 0%, #34D399 100%);
   --gradient-indigo: linear-gradient(135deg, #6366F1 0%, #818CF8 100%);
   
   /* Neon accent colors */
-  --rose: #FB7185;
-  --orange: #FB923C;
+  --rose: #9382E0;
+  --orange: #6B5BA0;
   --emerald: #10B981;
   --indigo: #6366F1;
-  --crimson: #F43F5E;
+  --crimson: #9382E0;
   
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);

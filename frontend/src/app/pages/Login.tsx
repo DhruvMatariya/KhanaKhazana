@@ -107,8 +107,8 @@ export default function Login() {
           <div
             className="w-20 h-20 rounded-3xl flex items-center justify-center"
             style={{
-              background: "linear-gradient(135deg, #FB7185 0%, #FB923C 100%)",
-              boxShadow: "0 8px 24px rgba(251, 113, 133, 0.3)",
+              background: "linear-gradient(135deg, #FF8C42 0%, #D45D2B 100%)",
+              boxShadow: "0 8px 24px rgba(147, 130, 224, 0.4)",
             }}
           >
             <ChefHat className="w-10 h-10 text-white" />
@@ -234,7 +234,11 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 text-white font-medium disabled:opacity-60"
+            className="w-full py-3 rounded-full text-white font-medium disabled:opacity-60"
+            style={{
+              background: 'linear-gradient(135deg, #FF8C42 0%, #D45D2B 100%)',
+              boxShadow: '0 8px 24px rgba(147, 130, 224, 0.3)'
+            }}
           >
             {loading ? "Please wait..." : isLogin ? "Sign In" : isAdminSignup ? "Create Restaurant Admin" : "Create Customer Account"}
           </button>

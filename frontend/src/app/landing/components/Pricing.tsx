@@ -25,7 +25,7 @@ const plans = [
   },
   {
     name: 'Growth',
-    price: { monthly: '$79', annual: '$63' },
+    price: { monthly: '₹79', annual: '₹63' },
     priceNote: '/month per location',
     description: 'For multi-location operators who need full visibility and control.',
     color: C.rose,

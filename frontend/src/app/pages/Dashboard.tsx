@@ -45,7 +45,7 @@ export default function Dashboard() {
         <div 
           className="absolute top-[50%] left-[50%] w-[400px] h-[400px] rounded-full opacity-15"
           style={{
-            background: 'radial-gradient(circle, rgba(251, 113, 133, 0.3) 0%, rgba(251, 113, 133, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(147, 130, 224, 0.3) 0%, rgba(147, 130, 224, 0) 70%)',
             filter: 'blur(90px)',
             transform: 'translate(-50%, -50%)',
           }}
@@ -65,7 +65,7 @@ export default function Dashboard() {
             <div 
               className="w-12 h-12 rounded-2xl flex items-center justify-center"
               style={{
-                background: 'linear-gradient(135deg, #FB7185 0%, #FB923C 100%)',
+                background: 'linear-gradient(135deg, #FF8C42 0%, #D45D2B 100%)',
               }}
             >
               <UtensilsCrossed className="w-6 h-6 text-white" />

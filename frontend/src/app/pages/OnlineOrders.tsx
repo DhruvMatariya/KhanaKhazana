@@ -754,7 +754,7 @@ export default function OnlineOrders() {
 
                     <div className="mt-3 flex gap-2 flex-wrap">
                       <button onClick={() => updateCustomerNeedStatus(need.id, "OPEN")} className="px-2 py-1 rounded bg-zinc-700/50 text-zinc-200 text-xs">Open</button>
-                      <button onClick={() => updateCustomerNeedStatus(need.id, "IN_PROGRESS")} className="px-2 py-1 rounded bg-cyan-500/20 text-cyan-200 text-xs">In Progress</button>
+                      <button onClick={() => updateCustomerNeedStatus(need.id, "IN_PROGRESS")} className="px-2 py-1 rounded bg-orange-500/20 text-orange-200 text-xs">In Progress</button>
                       <button onClick={() => updateCustomerNeedStatus(need.id, "RESOLVED")} className="px-2 py-1 rounded bg-emerald-500/20 text-emerald-200 text-xs">Resolved</button>
                     </div>
                   </div>
@@ -838,7 +838,7 @@ export default function OnlineOrders() {
                   </button>
                   {user?.role === "ADMIN" && (
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <button onClick={() => updateOrderStatus(order.id, "ACCEPTED")} className="px-2 py-1 rounded bg-cyan-500/20 text-cyan-200 text-xs">Accepted</button>
+                      <button onClick={() => updateOrderStatus(order.id, "ACCEPTED")} className="px-2 py-1 rounded bg-orange-500/20 text-orange-200 text-xs">Accepted</button>
                       <button onClick={() => updateOrderStatus(order.id, "PREPARING")} className="px-2 py-1 rounded bg-amber-500/20 text-amber-200 text-xs">Preparing</button>
                       <button onClick={() => updateOrderStatus(order.id, "OUT_FOR_DELIVERY")} className="px-2 py-1 rounded bg-violet-500/20 text-violet-200 text-xs">Out for delivery</button>
                       <button onClick={() => updateOrderStatus(order.id, "DELIVERED")} className="px-2 py-1 rounded bg-emerald-500/20 text-emerald-200 text-xs">Delivered</button>

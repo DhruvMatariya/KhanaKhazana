@@ -35,6 +35,11 @@ api.interceptors.response.use(
     const requestUrl = String(error?.config?.url || "");
     const isAuthEndpoint = requestUrl.includes("/api/auth/");
 
+    // Clear expired token if login endpoint returns 403 (expired JWT)
+    if (status === 403 && requestUrl.includes("/api/auth/login")) {
+      clearStoredUser();
+    }
+
     if ((status === 401 || status === 403) && !isAuthEndpoint) {
       const user = getStoredUser();
       const hasToken = Boolean(user?.token);
